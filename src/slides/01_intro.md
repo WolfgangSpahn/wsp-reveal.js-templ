@@ -12,5 +12,5 @@
 - Bullet B
 - Bullet C
 
-![--Image not found--](./assets/images/Logo_PHBern.png)
+![--Image not found--](assets/Logo_PH_Bern.webp)
 *Caption: Logo of PHBern*

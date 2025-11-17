@@ -86,7 +86,7 @@ img.image-border {
 /* ============================================
    List item scaling
    ============================================ */
-ul > li, ol > li {
+/* ul > li, ol > li {
     font-size: x-large;
 }
 
@@ -100,7 +100,7 @@ ul ul ul > li, ol ol ol > li {
 
 ul ul ul ul > li, ol ol ol ol > li {
     font-size: small;
-}
+} */
 
 /* ============================================
    Figure and figcaption
@@ -248,3 +248,4 @@ table {
     font-weight: 700;
     font-style: italic;
 }
+

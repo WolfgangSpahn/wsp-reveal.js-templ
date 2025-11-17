@@ -3,7 +3,7 @@
 # system python interpreter
 PY=python3
 FIND=find
-SETUP=./scripts/install.sh
+INSTALL=./scripts/install.sh
 INIT=./scripts/init.sh
 DEPLOY=./scripts/deploy.sh
 
@@ -14,9 +14,9 @@ IMAGES=~/Projects/Images
 help:            ## Show this help.
 	@grep -h "##" $(MAKEFILE_LIST) | grep -v grep | sed -e "s/\$$//" -e "s/##//"
 
-.PHONY: setup init publish
-setup:         ## Setup the environment
-	./setup.sh
+.PHONY: install init publish
+install:         ## install the environment
+	$(INSTALL)
 
 .PHONY: deploy
 deploy:         ## Deploy the package to PyPI
@@ -25,10 +25,21 @@ deploy:         ## Deploy the package to PyPI
 	@echo "======================================================================"
 	$(DEPLOY)
 
+.PHONY: broadcast
+broadcast:         ## Initialize seminar server
+	@echo "======================================================================"
+	@echo "Initialize seminar server"
+	@echo "======================================================================"
+	cd seminar-server && npm start
+
+
 clean:
 	rm -rf reveal.js
 	rm -rf public
 	$(FIND) . -type f -name '*~' -delete
+	rm -rf plugins
+	rm -rf tmp-plugins
+	rm -rf seminar-server
 
 images:        ## Link to images directory
 	@echo "======================================================================"

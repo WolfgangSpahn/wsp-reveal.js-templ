@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+
+  <script src="dist/reveal.js"></script>
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/white.css">
+
+  <!-- Socket.IO -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
+
+ 	<!-- Font awesome is used by several plugins -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">   -->
+
+  <!-- Seminar + extensions -->
+  <script src="plugin/seminar/plugin.js"></script>
+
+  <link rel="stylesheet" href="plugin/poll/style.css">
+  <script src="plugin/poll/plugin.js"></script>
+
+  <link rel="stylesheet" href="plugin/chalkboard/style.css">
+  <script src="plugin/chalkboard/plugin.js"></script>
+
+  <link rel="stylesheet" href="plugin/questions/style.css">
+  <script src="plugin/questions/plugin.js"></script>
+
+  <script src="plugin/chart/plugin.js"></script>
+  <link rel="stylesheet" href="plugin/chart/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/plugin.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/style.css"> -->
+
+
+  <style>
+    body { background: #fafafa; }
+    .poll button { font-size: 1.5em; margin: 10px; }
+  </style>
+</head>
+
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <section>
+      <h2>Minimal Seminar Demo</h2>
+      <p id="status">Connecting…</p>
+      <button onclick="joinRoom()">Join Room</button>
+    </section>
+
+    <section>
+      <h3>Poll Example</h3>
+
+      <!-- Seminar-poll UI -->
+      <div class="poll" data-poll="favorite" style="text-align:center;">
+        <button data-value="yes">Yes</button>
+        <button data-value="no">No</button>
+        <button data-value="maybe">Maybe</button>
+      </div>
+    </section>
+
+    <section>
+    <h3>Results</h3>
+        <div style="position: relative;height:480px!important;width:1280px!important;">
+        <canvas data-chart="bar" data-poll="favorite">
+        , Yes, No, Maybe
+        , 0, 0, 0
+        </canvas>
+        </div>
+    </section>
+
+<section>
+  <h3>Results</h3>
+  <div style="width:800px; height:400px;">
+    <canvas data-chart="bar" data-chart-poll="favorite"></canvas>
+  </div>
+</section>
+
+
+  </div>
+</div>
+
+<script>
+Reveal.initialize({
+  hash: true,
+
+  // customcontrols: {
+  //   controls: [
+  //     {
+  //       id: 'toggle-questions',
+  //       title: 'Toggle Q&A dashboard (Q)',
+  //       icon: '<span class="fa-stack" style="margin: -24px -12px;padding:0;"><span class="fa-solid fa-comment fa-stack-1x"></span><strong class="fa-stack-1x fa-inverse qna question-counter" style="font-size:0.5em;"></strong></span>',
+  //       action: 'RevealQnA.toggleQnA();'
+  //     }
+  //   ]
+  // },
+
+  seminar: {
+    server: "http://localhost:4433",
+    room: "demo-room",
+    hash: "$2a$05$lF8TFmQCn8SOE3cScVy22uIvw/u14L1pHDs5xetr2anHzcHW2Usay",   // your bcrypt hash from server http://localhost:<socker_nr>/
+    autoJoin: false,
+    logger: (msg) => console.log("Seminar:", msg)
+  },
+
+  chart: {
+    autoResize: true
+    },
+
+  plugins: [
+    RevealSeminar,
+    RevealPoll,
+    RevealChalkboard,
+    RevealQnA,
+    RevealChart 
+  ]
+});
+
+Reveal.on('slidechanged', event => {
+  const canvases = event.currentSlide.querySelectorAll("canvas[data-chart]");
+  canvases.forEach(canvas => {
+    if (canvas.chart) {
+      canvas.chart.resize();
+    }
+  });
+});
+
+
+/* Join room manually to avoid "not connected" alert */
+function joinRoom() {
+  RevealSeminar.open_or_join_room("demo-password", "Host");
+  document.getElementById("status").innerText = "Joined room!";
+}
+
+
+</script>
+
+</body>
+</html>

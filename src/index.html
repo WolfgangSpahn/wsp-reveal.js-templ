@@ -1,43 +1,47 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="dist/reveal.css" />
-  <link rel="stylesheet" href="dist/theme/white.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reveal.js Presentation</title>
 
-  <link rel="stylesheet" href="assets/phbern.css" />
+  <!-- Core Reveal.js -->
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
 
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/custom.css">
+  <link rel="stylesheet" href="assets/phbern.css">
 </head>
+
 <body>
-
-<div class="reveal">
-  <div class="slides">
-    <section data-markdown="slides/01_intro.md"></section>
-    <section data-markdown="slides/02_method.md"></section>
-    <section data-markdown="slides/03_results.md"></section>
+  <div class="reveal">
+    <div class="slides">
+      <!-- Each slide is loaded from a separate markdown file -->
+      <section data-markdown="slides/01_intro.md"></section>
+      <section data-markdown="slides/02_method.md"></section>
+      <section data-markdown="slides/03_results.md"></section>
+    </div>
   </div>
-</div>
 
-<script src="dist/reveal.js"></script>
-<script src="plugin/markdown/markdown.js"></script>
-<script src="plugin/highlight/highlight.js"></script>
+  <!-- PDF download link -->
+  <a id="pdf-link" href="#" style="display:none;">Download PDF</a>
 
-<script>
-Reveal.initialize({
-  center: false,
-  width: 1050,
-  height: 700,
-  margin: 0.1,   // important!
-  minScale: 0.2, // default
-  maxScale: 2.0, // default
-  hash: true,
-  plugins: [ RevealMarkdown, RevealHighlight ]
-});
-</script>
+  <!-- QR Code container -->
+  <div id="qrcode" style="display:none;"></div>
+  <a id="url" href="#" style="display:none;"></a>
 
+  <!-- Reveal core -->
+  <script src="reveal.js/dist/reveal.js"></script>
 
+  <!-- Load configuration utilities -->
+  <script src="config/utils.js"></script>
 
-</script>
+  <!-- Load ALL plugins from one file -->
+  <script src="config/plugins.js"></script>
+
+  <!-- Reveal.js configuration -->
+  <script src="config/reveal-config.js"></script>
 
 </body>
 </html>

@@ -12,3 +12,8 @@ node_modules/
 public/
 reveal.js/
 src/assets/images
+reveal.js/
+plugins/
+vendor/
+tmp-plugins/
+seminar-server/
