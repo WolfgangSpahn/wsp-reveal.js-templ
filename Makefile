@@ -9,7 +9,7 @@ DEPLOY=./scripts/deploy.sh
 
 # Source directory
 SRC=src
-IMAGES=~/Projects/Images
+IMAGES=~/Projects/images
 
 help:            ## Show this help.
 	@grep -h "##" $(MAKEFILE_LIST) | grep -v grep | sed -e "s/\$$//" -e "s/##//"
