@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="dist/reveal.css" />
+  <link rel="stylesheet" href="dist/theme/white.css" />
+
+  <link rel="stylesheet" href="assets/phbern.css" />
+
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+    <section data-markdown="slides/01_intro.md"></section>
+    <section data-markdown="slides/02_method.md"></section>
+    <section data-markdown="slides/03_results.md"></section>
+  </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+
+<script>
+Reveal.initialize({
+  center: false,
+  width: 1050,
+  height: 700,
+  margin: 0.1,   // important!
+  minScale: 0.2, // default
+  maxScale: 2.0, // default
+  hash: true,
+  plugins: [ RevealMarkdown, RevealHighlight ]
+});
+</script>
+
+
+
+</script>
+
+</body>
+</html>
